@@ -13,7 +13,7 @@ function App() {
     {
       id: 1,
       text: 'Doctors Appointment',
-      day: 'feb 24 at 2.30',
+      dayTime: 'Feb 24 at 2.30',
       reminder: true
 
     },
@@ -21,14 +21,14 @@ function App() {
     {
       id: 2,
       text: 'school Appointment',
-      day: 'feb 23 at 2.30',
+      dayTime: 'Feb 23 at 2.30',
       reminder: true
     },
 
     {
       id: 3,
       text: 'meeting Appointment',
-      day: 'feb 30 at 2.30',
+      dayTime: 'Feb 30 at 2.30',
       reminder: false
     }
   ])
@@ -54,7 +54,7 @@ function App() {
 
   return (
     <div className="container">
-      <Header title='Task Tracker' onShowAddTaskForm={() => setShowAddTask(!showAddTask)} />
+      <Header title='Task Tracker' text={!showAddTask ? 'Add' : 'Close'} onShowAddTaskForm={() => setShowAddTask(!showAddTask)} />
       {showAddTask && <AddTask onAdd={addTask} />}
       {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />) : ('No Task to show')}
     </div>

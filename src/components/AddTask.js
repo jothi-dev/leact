@@ -1,10 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const AddTask = ({ onAdd }) => {
     const [text, setText] = useState('')
-    const [day, setDay] = useState('')
     const [reminder, setReminder] = useState(false)
+    const [dateValue, setDateValue] = useState(new Date());
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -14,10 +16,16 @@ const AddTask = ({ onAdd }) => {
             return
         }
 
-        onAdd({text, day, reminder})
+        const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        let day = days[dateValue.getDay()];
+        let date = dateValue.getDate();
 
+        let dayTime = `${day} ${date}`;
+
+        onAdd({text, dayTime, reminder})
+
+        setDateValue(new Date())
         setText('')
-        setDay('')
         setReminder(false)
     }
 
@@ -30,7 +38,7 @@ const AddTask = ({ onAdd }) => {
 
         <div className='form-control'>
             <label>Day</label>
-            <input type='text' placeholder='Add Day & Time' value={day} onChange={(e) => setDay(e.target.value)} />
+            <Calendar onChange={setDateValue} value={dateValue} />
         </div>
         <div className='form-control form-control-check'>
             <label>Set Reminder</label>
