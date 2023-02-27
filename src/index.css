@@ -59,10 +59,15 @@ body {
   margin: 5px;
   padding: 10px 20px;
   cursor: pointer;
+  /* prevent text selection */
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .task.reminder {
   border-left: 5px green solid;
+  background-color: #fbf5f1;
 }
 
 .task h3 {
